@@ -7,5 +7,20 @@ Useful for small projects that use alpine and where downloading the whole python
 ## Usage
 
 ```sh
-docker run --rm kinkard/yt-dlp-alpine:latest [OPTIONS] URL [URL...]
+docker run --rm -v $PWD:/downloads kinkard/yt-dlp-alpine [OPTIONS] URL [URL...]
+```
+
+- `-v $PWD:/downloads` mounts the current directory to `/downloads` in the container so that the downloaded files are saved on the host
+- For yt-dlp options see [yt-dlp documentation](https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#usage-and-options)
+
+For example, to download a video:
+
+```sh
+docker run --rm -v $PWD:/downloads kinkard/yt-dlp-alpine 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+```
+
+or to download best quality audio:
+
+```sh
+docker run --rm -v $PWD:/downloads kinkard/yt-dlp-alpine -f 'ba[abr>0][vcodec=none]/best' 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 ```

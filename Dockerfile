@@ -14,4 +14,5 @@ RUN python3 -m bundle.pyinstaller
 
 FROM alpine as runtime
 COPY --from=builder /usr/src/yt-dlp/dist/yt-dlp_linux_aarch64 /usr/local/bin/yt-dlp
+WORKDIR /downloads
 ENTRYPOINT ["yt-dlp"]
