@@ -24,3 +24,16 @@ or to download best quality audio:
 ```sh
 docker run --rm -v $PWD:/downloads kinkard/yt-dlp-alpine -f 'ba[abr>0][vcodec=none]/best' 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 ```
+
+## Use in docker images
+
+Alternatively, you can use that binary directly in your alpine image
+
+```dockerfile
+# ...
+
+FROM alpine as runtime
+COPY --from=kinkard/yt-dlp-alpine:latest /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp
+
+# now in `runtime` image you can use `yt-dlp` binary
+```
