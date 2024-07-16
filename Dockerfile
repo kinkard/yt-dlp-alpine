@@ -13,6 +13,7 @@ RUN python3 devscripts/make_lazy_extractors.py
 RUN python3 -m bundle.pyinstaller
 
 FROM alpine as runtime
+RUN apk add --no-cache ffmpeg
 COPY --from=builder /usr/src/yt-dlp/dist/yt-dlp_linux_aarch64 /usr/local/bin/yt-dlp
 WORKDIR /downloads
 ENTRYPOINT ["yt-dlp"]

@@ -33,6 +33,8 @@ Alternatively, you can use that binary directly in your alpine image
 # ...
 
 FROM alpine as runtime
+# Optionally add ffmpeg so yt-dlp can merge separate audio and video streams (e.g. for -f 'bestaudio+bestvideo')
+# RUN apk add --no-cache ffmpeg
 COPY --from=kinkard/yt-dlp-alpine:latest /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp
 
 # now in `runtime` image you can use `yt-dlp` binary
