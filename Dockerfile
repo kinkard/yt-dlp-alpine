@@ -3,7 +3,7 @@ FROM kinkard/pyinstaller-alpine as builder
 # Unfortunately, we can't pass our Dockerfile to the yt-dlp repo context,
 # and `ADD` just doesn't work, so there is nothing else we can do but clone the repo
 WORKDIR /usr/src
-RUN apk add --no-cache git
+RUN apk add --no-cache git gcc musl-dev
 RUN git clone https://github.com/yt-dlp/yt-dlp.git
 WORKDIR /usr/src/yt-dlp
 
